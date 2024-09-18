@@ -90,5 +90,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contributing
 Feel free to submit issues or pull requests for improvements or bug fixes. Your contributions are welcome!
 
-## Acknowledgments
-Thanks to the open-source community for providing the tools and libraries that make this script possible.
+## For Improvement and project
+
+contact us saiful.coder@gmail.com
+
+## Contributing
+
+This project helps you and you want to help keep it going? Buy me a coffee:
+<br> <a href="https://www.buymeacoffee.com/saifulcoder" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 61px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a><br>
+or via <br>
+<a href="https://saweria.co/saifulcoder">https://saweria.co/saifulcoder</a>
