@@ -65,9 +65,6 @@ composer -V
 
 ## Adding a New Domain
 After installing the LAMP stack, you can add a new domain to your server by following these steps:
-Create a Bash Script to Add a Domain: Use the previously provided Bash script to add a new domain. Save the script in a file, for example, add_domain.sh.
-Grant Execute Permission: After saving the script, grant execute permission to the file with the following command:
-bash
 
 ```bash
 chmod +x vhost.sh
