@@ -51,6 +51,9 @@ sudo apt install -y ffmpeg || error "Failed to install FFmpeg"
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - || error "Failed to add Node.js repository"
 sudo apt install -y nodejs || error "Failed to install Node.js"
 
+# Install pm2
+sudo apt update && apt install sudo curl && curl -sL https://raw.githubusercontent.com/Unitech/pm2/master/packager/setup.deb.sh | sudo -E bash -
+
 # Install Composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 # php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
