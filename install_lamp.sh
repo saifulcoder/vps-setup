@@ -22,14 +22,34 @@ sudo systemctl start mariadb
 sudo systemctl enable mariadb
 echo "Please run 'sudo mysql_secure_installation' manually after the script finishes."
 
-# Install PHP 7.4 and required modules
-sudo apt install -y php7.4 libapache2-mod-php7.4 php7.4-mysql || error "Failed to install PHP"
+# Prompt user for PHP version
+echo "Select PHP version to install:"
+echo "1) PHP 7.4"
+echo "2) PHP 8.3"
+read -p "Enter your choice (1 or 2): " php_choice
 
-# Install PHP extensions
-php_extensions=(
-    php7.4-curl php7.4-json php7.4-cgi php7.4-xsl 
-    php7.4-mbstring php7.4-xml php7.4-zip php7.4-gd php7.4-fileinfo php7.4-ldap
-)
+if [ "$php_choice" -eq 1 ]; then
+    # Install PHP 7.4 and required modules
+    sudo apt install -y php7.4 libapache2-mod-php7.4 php7.4-mysql || error "Failed to install PHP 7.4"
+
+    # Install PHP 7.4 extensions
+    php_extensions=(
+        php7.4-curl php7.4-json php7.4-cgi php7.4-xsl 
+        php7.4-mbstring php7.4-xml php7.4-zip php7.4-gd php7.4-fileinfo php7.4-ldap
+    )
+elif [ "$php_choice" -eq 2 ]; then
+    # Install PHP 8.3 and required modules
+    sudo apt install -y php8.3 libapache2-mod-php8.3 php8.3-mysql || error "Failed to install PHP 8.3"
+
+    # Install PHP 8.3 extensions
+    php_extensions=(
+        php8.3-curl php8.3-json php8.3-cgi php8.3-xsl 
+        php8.3-mbstring php8.3-xml php8.3-zip php8.3-gd php8.3-fileinfo php8.3-ldap
+    )
+else
+    error "Invalid choice. Please run the script again and select either 1 or 2."
+    exit 1
+fi
 
 for ext in "${php_extensions[@]}"; do
     sudo apt install -y "$ext" || error "Failed to install $ext"
@@ -37,7 +57,7 @@ done
 
 # Attempt to install additional PHP extensions
 optional_extensions=(
-    php7.4-imagick php7.4-imap php7.4-redis php7.4-memcached php7.4-xdebug
+    php${php_choice}.0-imagick php${php_choice}.0-imap php${php_choice}.0-redis php${php_choice}.0-memcached php${php_choice}.0-xdebug
 )
 
 for ext in "${optional_extensions[@]}"; do
@@ -56,7 +76,6 @@ sudo apt update && apt install sudo curl && curl -sL https://raw.githubuserconte
 
 # Install Composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-# php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 sudo mv composer.phar /usr/local/bin/composer || error "Failed to install Composer"
@@ -106,7 +125,6 @@ DESTINATION_DIR="/var/www/html"
 mv "$SOURCE_FILE" "$DESTINATION_DIR"
 echo "File x-prober '$SOURCE_FILE' has been moved to '$DESTINATION_DIR'."
 
-
 # Enable Apache modules
 sudo a2enmod rewrite
 
@@ -117,7 +135,11 @@ sudo systemctl restart apache2 || error "Failed to restart Apache"
 echo "LAMP stack installation completed!"
 echo "Apache has been installed and started."
 echo "MariaDB has been installed and configured."
-echo "PHP 7.4 and core extensions have been installed."
+if [ "$php_choice" -eq 1 ]; then
+    echo "PHP 7.4 and core extensions have been installed."
+elif [ "$php_choice" -eq 2 ]; then
+    echo "PHP 8.3 and core extensions have been installed."
+fi
 echo "Some optional PHP extensions may not have been installed due to availability."
 echo "FFmpeg has been installed."
 echo "Node.js version 20 has been installed."
