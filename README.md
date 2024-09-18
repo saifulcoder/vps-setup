@@ -7,7 +7,7 @@ This Bash script automates the installation of a LAMP (Linux, Apache, MySQL/Mari
 - **System Update**: Automatically updates the system packages.
 - **Apache Installation**: Installs and configures the Apache web server.
 - **MariaDB Installation**: Installs MariaDB and prompts for secure installation.
-- **PHP Installation**: Installs PHP 7.4 and essential extensions.
+- **PHP Installation**: Allows the choice between PHP 7.4 and PHP 8.3 and installs core and optional PHP extensions.
 - **FFmpeg Installation**: Installs FFmpeg for multimedia processing.
 - **Node.js Installation**: Installs Node.js version 20.
 - **Composer Installation**: Installs Composer for PHP dependency management.
