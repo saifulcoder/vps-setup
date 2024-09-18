@@ -39,8 +39,12 @@ This script is designed for installing PHP addons and other software on a Debian
 2. **Run the script**:
 
    ```bash
-   sudo bash install.sh
+   chmod 700 install_lamp.sh
    ```
+   ```bash
+   sudo bash install_lamp.sh
+   ```
+
 
    This script will install all the mentioned PHP addons and other software.
 
