@@ -1,4 +1,7 @@
 #!/bin/bash
+# Author:  saiful.coder <saiful.coder AT gmail.com>
+#
+# Notes: Debian 11
 
 set -e
 
