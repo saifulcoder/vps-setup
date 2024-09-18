@@ -92,6 +92,15 @@ sudo tee /etc/apache2/sites-available/000-default.conf > /dev/null <<EOF
 </VirtualHost>
 EOF
 
+# Define the source file and destination directory
+SOURCE_FILE="x.php"
+DESTINATION_DIR="/var/www/html"
+
+# Move the file to the destination directory
+mv "$SOURCE_FILE" "$DESTINATION_DIR"
+echo "File x-prober '$SOURCE_FILE' has been moved to '$DESTINATION_DIR'."
+
+
 # Enable Apache modules
 sudo a2enmod rewrite
 
