@@ -72,8 +72,7 @@ curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - || error "Fail
 sudo apt install -y nodejs || error "Failed to install Node.js"
 
 # Install pm2
-sudo apt update && apt install sudo curl && curl -sL https://raw.githubusercontent.com/Unitech/pm2/master/packager/setup.deb.sh | sudo -E bash -
-sudo apt install -y pm2 
+npm install pm2 -g
 
 # Install Composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
