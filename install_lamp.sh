@@ -13,6 +13,7 @@ error() {
 # Update system
 sudo apt update && sudo apt upgrade -y || error "Failed to update system"
 
+
 # Install Apache
 sudo apt install -y apache2 || error "Failed to install Apache"
 
@@ -27,6 +28,12 @@ echo "Select PHP version to install:"
 echo "1) PHP 7.4"
 echo "2) PHP 8.3"
 read -p "Enter your choice (1 or 2): " php_choice
+
+# Repository Ondřej Surý
+sudo apt install -y lsb-release apt-transport-https ca-certificates wget
+wget -qO - https://packages.sury.org/php/apt.gpg | sudo tee /etc/apt/trusted.gpg.d/sury-php.gpg >/dev/null
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/sury-php.list
+sudo apt update
 
 if [ "$php_choice" -eq 1 ]; then
     # Install PHP 7.4 and required modules
@@ -43,7 +50,7 @@ elif [ "$php_choice" -eq 2 ]; then
 
     # Install PHP 8.3 extensions
     php_extensions=(
-        php8.3-curl php8.3-json php8.3-cgi php8.3-xsl 
+        php8.3-curl php8.3-cgi php8.3-xsl 
         php8.3-mbstring php8.3-xml php8.3-zip php8.3-gd php8.3-fileinfo php8.3-ldap
     )
 else
