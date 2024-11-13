@@ -21,7 +21,24 @@ sudo apt install -y apache2 || error "Failed to install Apache"
 sudo apt install -y mariadb-server || error "Failed to install MariaDB"
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
-echo "Please run 'sudo mysql_secure_installation' manually after the script finishes."
+
+# Prompt user for MySQL root password
+read -p "Enter MySQL root password: " mysql_root_password
+
+# Secure MariaDB installation
+sudo mysql <<EOF
+-- Set root password
+ALTER USER 'root'@'localhost' IDENTIFIED BY '$mysql_root_password';
+-- Remove anonymous users
+DELETE FROM mysql.user WHERE User='';
+-- Disallow root login remotely
+DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost');
+-- Remove test database and access to it
+DROP DATABASE IF EXISTS test;
+DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
+-- Reload privilege tables
+FLUSH PRIVILEGES;
+EOF
 
 # Prompt user for PHP version
 echo "Select PHP version to install:"
@@ -156,8 +173,8 @@ echo "Please run 'sudo mysql_secure_installation' to secure your MariaDB install
 
 # Verify installations
 apache2 -v
-mysql --version
+mysql -v
 php -v
 node -v
 npm -v
-composer -V
+composer -v
