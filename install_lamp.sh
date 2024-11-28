@@ -10,6 +10,12 @@ error() {
     echo "Error: $1" >&2
 }
 
+# Define colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
 # Update system
 sudo apt update && sudo apt upgrade -y || error "Failed to update system"
 
@@ -172,9 +178,10 @@ echo "Default IP page has been configured."
 echo "Please run 'sudo mysql_secure_installation' to secure your MariaDB installation."
 
 # Verify installations
-apache2 -v
-mysql -v
-php -v
-node -v
-npm -v
-composer -v
+echo -e "${BLUE}# Verify installations${NC}"
+echo -e "${GREEN}apache2 -v${NC}"
+echo -e "${GREEN}php -v${NC}"
+echo -e "${GREEN}node -v${NC}"
+echo -e "${GREEN}npm -v${NC}"
+echo -e "${GREEN}composer -v${NC}"
+echo -e "${GREEN}mysql -v${NC}"
