@@ -179,9 +179,9 @@ echo "Please run 'sudo mysql_secure_installation' to secure your MariaDB install
 
 # Verify installations
 echo -e "${BLUE}# Verify installations${NC}"
-echo -e "${GREEN}apache2 -v${NC}"
-echo -e "${GREEN}php -v${NC}"
-echo -e "${GREEN}mysql -v${NC}"
-echo -e "${GREEN}node -v${NC}"
-echo -e "${GREEN}npm -v${NC}"
-echo -e "${GREEN}composer -v${NC}"
+apache2 -v
+php -v
+mysql -v
+node -v
+npm -v
+composer -v
