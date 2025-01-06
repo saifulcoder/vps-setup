@@ -19,6 +19,11 @@ NC='\033[0m' # No Color
 # Update system
 sudo apt update && sudo apt upgrade -y || error "Failed to update system"
 
+# Ensure curl and npm are installed
+sudo apt install -y curl || error "Failed to install curl"
+sudo apt install -y npm || error "Failed to install npm"
+
+
 
 # Install Apache
 sudo apt install -y apache2 || error "Failed to install Apache"
