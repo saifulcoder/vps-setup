@@ -166,6 +166,9 @@ sudo a2enmod rewrite
 # Restart Apache
 sudo systemctl restart apache2 || error "Failed to restart Apache"
 
+#set timezone
+sudo timedatectl set-timezone Asia/Jakarta
+
 # Completion message
 echo "LAMP stack installation completed!"
 echo "Apache has been installed and started."
