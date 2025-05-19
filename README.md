@@ -21,6 +21,9 @@ This Bash script automates the installation of a LAMP (Linux, Apache, MySQL/Mari
 ## Usage
 1. **Clone the Repository**:
    ```bash
+   apt update
+   apt install git
+   apt install sudo
    git clone https://github.com/saifulcoder/vps-setup.git
    cd vps-setup
    ```
